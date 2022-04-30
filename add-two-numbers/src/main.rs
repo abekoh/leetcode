@@ -27,13 +27,16 @@ impl Solution {
         is_move_up: bool,
     ) -> Option<Box<ListNode>> {
         if l1.is_none() && l2.is_none() {
-            return None;
+            if is_move_up {
+                Some(Box::from(ListNode { val: 1, next: None }))
+            } else {
+                return None;
+            }
         } else {
             let val1 = if let Some(ref l) = l1 { l.val } else { 0 };
             let val2 = if let Some(ref l) = l2 { l.val } else { 0 };
             let sum_val = val1 + val2 + if is_move_up { 1 } else { 0 };
             let set_val = sum_val % 10;
-            let is_move_up = sum_val >= 10;
             let node = ListNode {
                 val: set_val,
                 next: Solution::add_two_numbers_with_move_up(
@@ -47,11 +50,10 @@ impl Solution {
                     } else {
                         Option::None
                     },
-                    is_move_up,
+                    sum_val >= 10,
                 ),
             };
             Some(Box::from(node))
-        }
     }
 }
 fn main() {
