@@ -6,6 +6,32 @@ struct Solution {}
 
 impl Solution {
     pub fn three_sum(nums: Vec<i32>) -> Vec<Vec<i32>> {
+        let mut nums = nums.clone();
+        nums.sort_unstable();
+        let n = nums.len();
+        let mut results = vec![];
+        for i in 0..=(n - 2) {
+            let a = nums[i];
+            let mut start = i + 1;
+            let mut end = n - 1;
+            while start < end {
+                let b = nums[start];
+                let c = nums[end];
+                if a + b + c == 0 {
+                    results.push(vec![a, b, c]);
+                    start += 1;
+                    end -= 1;
+                } else if a + b + c > 0 {
+                    end -= 1;
+                } else {
+                    start += 1;
+                }
+            }
+        }
+        results
+    }
+
+    pub fn three_sum_old(nums: Vec<i32>) -> Vec<Vec<i32>> {
         if nums.len() < 3 {
             return vec![];
         }
