@@ -5,11 +5,15 @@ use std::collections::HashSet;
 struct Solution {}
 
 impl Solution {
+    // c.f. https://en.wikipedia.org/wiki/3SUM
     pub fn three_sum(nums: Vec<i32>) -> Vec<Vec<i32>> {
-        let mut nums = nums.clone();
+        if nums.len() < 3 {
+            return vec![];
+        }
+        let mut nums = nums;
         nums.sort_unstable();
         let n = nums.len();
-        let mut results = vec![];
+        let mut result_set = HashSet::<Vec<i32>>::new();
         for i in 0..=(n - 2) {
             let a = nums[i];
             let mut start = i + 1;
@@ -17,18 +21,22 @@ impl Solution {
             while start < end {
                 let b = nums[start];
                 let c = nums[end];
-                if a + b + c == 0 {
-                    results.push(vec![a, b, c]);
-                    start += 1;
-                    end -= 1;
-                } else if a + b + c > 0 {
-                    end -= 1;
-                } else {
-                    start += 1;
+                match a + b + c {
+                    0 => {
+                        result_set.insert(vec![a, b, c]);
+                        start += 1;
+                        end -= 1;
+                    }
+                    1.. => {
+                        end -= 1;
+                    }
+                    _ => {
+                        start += 1;
+                    }
                 }
             }
         }
-        results
+        result_set.into_iter().collect()
     }
 
     pub fn three_sum_old(nums: Vec<i32>) -> Vec<Vec<i32>> {
