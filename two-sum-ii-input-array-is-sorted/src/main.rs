@@ -20,7 +20,7 @@ impl Solution {
                 }
             }
         }
-        vec![]
+        unreachable!()
     }
 }
 
