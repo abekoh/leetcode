@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 // Definition for singly-linked list.
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
@@ -53,7 +55,8 @@ impl Solution {
                     sum_val >= 10,
                 ),
             };
-            Some(Box::from(node))
+            return Some(Box::from(node));
+        }
     }
 }
 fn main() {

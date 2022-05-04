@@ -1,0 +1,17 @@
+[workspace]
+members = [
+  "_3sum",
+  "add-two-numbers",
+  "binary-search",
+  "first-bad-version",
+  "longest-substring-without-repeating-characters",
+  "minimum-number-of-moves-to-seat-everyone",
+  "palindrome-number",
+  "pour-water",
+  "search-insert-position",
+  "slowest-key",
+  "squares-of-a-sorted-array",
+  "two-sum",
+  "two-sum-ii-input-array-is-sorted",
+  "water-bottles",
+]
