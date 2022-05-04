@@ -66,6 +66,7 @@ mod tests {
     use super::*;
 
     #[test]
+    #[ignore]
     fn example_1() {
         assert_eq!(
             Solution::three_sum(vec![-1, 0, 1, 2, -1, -4]),
