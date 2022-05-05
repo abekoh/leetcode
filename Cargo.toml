@@ -15,4 +15,5 @@ members = [
   "two-sum-ii-input-array-is-sorted",
   "water-bottles",
   "rotate-array",
+  "move-zeros",
 ]
