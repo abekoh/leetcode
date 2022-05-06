@@ -16,4 +16,5 @@ members = [
   "water-bottles",
   "rotate-array",
   "move-zeros",
+  "contains-duplicate",
 ]
