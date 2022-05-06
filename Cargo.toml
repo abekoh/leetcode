@@ -17,4 +17,5 @@ members = [
   "rotate-array",
   "move-zeros",
   "contains-duplicate",
+  "maximum-subarray",
 ]
