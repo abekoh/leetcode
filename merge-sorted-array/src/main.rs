@@ -10,14 +10,15 @@ impl Solution {
     pub fn merge(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n: i32) {
         let m = m as usize;
         let n = n as usize;
+        let mut i = 0 as usize;
         let mut j = 0 as usize;
-        for i in 0..(m + n) {
-            if nums1[i] > nums2[j] {
-                nums1[i + 1] = nums1[i];
-                nums1[i] = nums2[j];
-                j += 1;
-            } else if i > m {
-                nums1[i] = nums2[j];
+        let nums1_copy = nums1.clone();
+        for k in 0..(m + n) {
+            if j >= n || (i < m && nums1_copy[i] <= nums2[j]) {
+                nums1[k] = nums1_copy[i];
+                i += 1;
+            } else {
+                nums1[k] = nums2[j];
                 j += 1;
             }
         }
@@ -51,9 +52,16 @@ mod tests {
         Solution::merge(&mut num1, 0, &mut num2, 1);
         assert_eq!(num1, vec![1]);
     }
+
+    #[test]
+    fn example_4() {
+        let mut num1 = vec![1, 0];
+        let mut num2 = vec![2];
+        Solution::merge(&mut num1, 1, &mut num2, 1);
+        assert_eq!(num1, vec![1, 2]);
+    }
 }
 
 fn main() {
     println!("leetcode template");
 }
-
