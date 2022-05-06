@@ -18,4 +18,5 @@ members = [
   "move-zeros",
   "contains-duplicate",
   "maximum-subarray",
+  "reverse-string",
 ]
