@@ -1,9 +1,21 @@
 #![allow(dead_code)]
 
+use std::cmp;
+
 struct Solution {}
 
 impl Solution {
     pub fn max_sub_array(nums: Vec<i32>) -> i32 {
+        let mut cur = nums[0];
+        let mut max = nums[0];
+        for n in &nums[1..nums.len()] {
+            cur = cmp::max(*n, *n+cur);
+            max = cmp::max(max, cur);
+        }
+        max
+    }
+
+    pub fn max_sub_array_old(nums: Vec<i32>) -> i32 {
         let mut sum = i32::MIN;
         for n in 1..=nums.len() {
             for i in 0..=(nums.len() - n) {
