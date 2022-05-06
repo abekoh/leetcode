@@ -20,4 +20,5 @@ members = [
   "maximum-subarray",
   "reverse-string",
   "reverse-words-in-a-string-iii",
+  "merge-sorted-array",
 ]
