@@ -31,7 +31,24 @@ struct Solution {}
 
 impl Solution {
     pub fn middle_node(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-        None
+        if head.is_none() {
+            return None;
+        }
+        let cur = head.as_ref().unwrap();
+        let mut depth = 0;
+        loop {
+            if let Some(cur) = &cur.next {
+                depth += 1;
+            } else {
+                break;
+            }
+        }
+        let mid = depth / 2 + 1;
+        let mut cur = head.unwrap();
+        for _ in 0..mid {
+            cur = cur.next.unwrap();
+        }
+        Some(cur)
     }
 }
 
