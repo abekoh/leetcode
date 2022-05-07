@@ -35,6 +35,10 @@ name = "merge-sorted-array"
 version = "0.1.0"
 
 [[package]]
+name = "middle-of-the-linked-list"
+version = "0.1.0"
+
+[[package]]
 name = "minimum-number-of-moves-to-seat-everyone"
 version = "0.1.0"
 

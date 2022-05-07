@@ -21,4 +21,5 @@ members = [
   "reverse-string",
   "reverse-words-in-a-string-iii",
   "merge-sorted-array",
+  "middle-of-the-linked-list",
 ]
