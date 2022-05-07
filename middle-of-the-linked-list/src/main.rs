@@ -31,24 +31,30 @@ struct Solution {}
 
 impl Solution {
     pub fn middle_node(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-        if head.is_none() {
-            return None;
+        let mut fast_cur = &head;
+        let mut slow_cur = &head;
+        let mut i = 0;
+        while let Some(node) = fast_cur {
+            if i % 2 == 1 {
+                slow_cur = &slow_cur.as_ref().unwrap().next;
+            }
+            fast_cur = &node.next;
+            i +=1;
         }
-        let cur = head.as_ref().unwrap();
-        let mut depth = 0;
+        slow_cur.clone()
+    }
+
+    // https://leetcode.com/problems/middle-of-the-linked-list/discuss/476670/Rust
+    pub fn middle_node_another(mut head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+        let mut ptr = head.clone();
         loop {
-            if let Some(cur) = &cur.next {
-                depth += 1;
-            } else {
+            if ptr.is_none() || ptr.as_ref()?.next.is_none() {
                 break;
             }
+            ptr = ptr.unwrap().next.unwrap().next;
+            head = head.unwrap().next;
         }
-        let mid = depth / 2 + 1;
-        let mut cur = head.unwrap();
-        for _ in 0..mid {
-            cur = cur.next.unwrap();
-        }
-        Some(cur)
+        head
     }
 }
 
