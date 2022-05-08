@@ -55,6 +55,10 @@ name = "pour-water"
 version = "0.1.0"
 
 [[package]]
+name = "remove-nth-node-from-end-of-list"
+version = "0.1.0"
+
+[[package]]
 name = "reverse-string"
 version = "0.1.0"
 

@@ -22,4 +22,5 @@ members = [
   "reverse-words-in-a-string-iii",
   "merge-sorted-array",
   "middle-of-the-linked-list",
+  "remove-nth-node-from-end-of-list",
 ]
