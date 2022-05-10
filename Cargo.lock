@@ -55,6 +55,10 @@ name = "palindrome-number"
 version = "0.1.0"
 
 [[package]]
+name = "permutation-in-string"
+version = "0.1.0"
+
+[[package]]
 name = "pour-water"
 version = "0.1.0"
 

@@ -23,5 +23,6 @@ members = [
   "merge-sorted-array",
   "middle-of-the-linked-list",
   "remove-nth-node-from-end-of-list",
-  "intersection-of-two-arrays-ii"
+  "intersection-of-two-arrays-ii",
+  "permutation-in-string",
 ]
