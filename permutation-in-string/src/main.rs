@@ -4,6 +4,24 @@ struct Solution {}
 
 impl Solution {
     pub fn check_inclusion(s1: String, s2: String) -> bool {
+        let mut array1: [usize; 26] = [0; 26];
+        let mut array2: [usize; 26] = [0; 26];
+        for c in s1.chars() {
+            array1[(c as u8 - b'a') as usize] += 1;
+        }
+        for (i, c) in (s2.as_bytes() as &[u8]).iter().enumerate() {
+            array2[(c - b'a') as usize] += 1;
+            if i >= s1.len() {
+                array2[(s2.as_bytes()[i - s1.len()] - b'a') as usize] -= 1;
+            }
+            if array1 == array2 {
+                return true;
+            }
+        }
+        false
+    }
+
+    pub fn check_inclusion_old(s1: String, s2: String) -> bool {
         if s1.len() == 1 {
             return s2.contains(&s1);
         }
