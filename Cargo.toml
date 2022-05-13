@@ -24,5 +24,8 @@ members = [
   "middle-of-the-linked-list",
   "remove-nth-node-from-end-of-list",
   "intersection-of-two-arrays-ii",
-  "best-time-to-buy-and-sell-stock"
+  "best-time-to-buy-and-sell-stock",
+  "intersection-of-two-arrays-ii",
+  "permutation-in-string",
+  "flood-fill",
 ]

@@ -6,20 +6,20 @@ struct Solution {}
 
 impl Solution {
     pub fn intersect(nums1: Vec<i32>, nums2: Vec<i32>) -> Vec<i32> {
-        let mut mp = HashMap::new();
+        let mut mp = HashMap::<i32, i32>::new();
         for n in nums1 {
-            if let Some(count) = mp.get(&n) {
-                mp.insert(n, count.clone() + 1);
+            if let Some(count) = mp.get(&n).cloned() {
+                mp.insert(n, count + 1);
             } else {
-                mp.insert(n, &1);
+                mp.insert(n, 1);
             }
         }
         let mut result = vec![];
         for n in nums2 {
-            if let Some(count) = mp.get(&n) {
-                if *count.clone() > 0 {
+            if let Some(count) = mp.get(&n).cloned() {
+                if count > 0 {
                     result.push(n);
-                    mp.insert(n, count.clone() - 1);
+                    mp.insert(n, count - 1);
                 }
             }
         }
@@ -28,7 +28,7 @@ impl Solution {
 }
 
 #[cfg(test)]
-mod maximum_subarray_tests {
+mod intersect_tests {
     use super::*;
 
     #[test]
@@ -41,7 +41,7 @@ mod maximum_subarray_tests {
 
     #[test]
     fn example_2() {
-        let actual = Solution::intersect(vec![4, 8, 5], vec![9, 4, 9, 8, 4]);
+        let actual = Solution::intersect(vec![4, 9, 5], vec![9, 4, 9, 8, 4]);
         assert_eq!(actual.len(), 2);
         assert!(actual.contains(&4));
         assert!(actual.contains(&9));
@@ -51,4 +51,3 @@ mod maximum_subarray_tests {
 fn main() {
     println!("leetcode template");
 }
-

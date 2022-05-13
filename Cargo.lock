@@ -27,6 +27,10 @@ name = "first-bad-version"
 version = "0.1.0"
 
 [[package]]
+name = "flood-fill"
+version = "0.1.0"
+
+[[package]]
 name = "intersection-of-two-arrays-ii"
 version = "0.1.0"
 
@@ -56,6 +60,10 @@ version = "0.1.0"
 
 [[package]]
 name = "palindrome-number"
+version = "0.1.0"
+
+[[package]]
+name = "permutation-in-string"
 version = "0.1.0"
 
 [[package]]
