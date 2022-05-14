@@ -28,4 +28,5 @@ members = [
   "intersection-of-two-arrays-ii",
   "permutation-in-string",
   "flood-fill",
+  "max-area-of-island",
 ]

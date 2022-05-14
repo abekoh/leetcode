@@ -39,6 +39,10 @@ name = "longest-substring-without-repeating-characters"
 version = "0.1.0"
 
 [[package]]
+name = "max-area-of-island"
+version = "0.1.0"
+
+[[package]]
 name = "maximum-subarray"
 version = "0.1.0"
 
