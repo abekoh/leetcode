@@ -5,12 +5,13 @@ struct Solution {}
 impl Solution {
     pub fn is_match(s: String, p: String) -> bool {
         let mut match_postfix_num = 0;
-        for i in (0..std::cmp::min(s.len(), p.len())).rev() {
-            if s.chars().nth(i).unwrap() != p.chars().nth(i).unwrap() {
+        for i in 0..std::cmp::min(s.len(), p.len()) {
+            if s.chars().nth(s.len() - i - 1).unwrap() != p.chars().nth(p.len() - i - 1).unwrap() {
                 break;
             }
             match_postfix_num += 1;
         }
+        // println!("{}", match_postfix_num);
         let mut s_idx = 0;
         let mut p_idx = 0;
         let s_len = s.len() - match_postfix_num;
@@ -40,6 +41,7 @@ impl Solution {
             while p_idx < p_len {
                 let pattern = Pattern::new(&p[p_idx..std::cmp::min(p_idx + 2, p_len)]);
                 p_idx += pattern.forward();
+                println!("{:?}", pattern);
                 if !pattern.is_any() {
                     return false;
                 }
@@ -134,6 +136,14 @@ mod regular_expression_matching_tests {
     fn example_5() {
         assert_eq!(
             Solution::is_match(String::from("aaa"), String::from("a*a")),
+            true
+        );
+    }
+
+    #[test]
+    fn example_6() {
+        assert_eq!(
+            Solution::is_match(String::from("aaa"), String::from("ab*a*c*a")),
             true
         );
     }
