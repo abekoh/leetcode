@@ -9,6 +9,7 @@ impl Solution {
         while s_idx < s.len() && p_idx < p.len() {
             let pattern = Pattern::new(&p[p_idx..std::cmp::min(p_idx + 2, p.len())]);
             p_idx += pattern.forward();
+            // println!("{:?}", pattern);
             while s_idx < s.len() {
                 let c = s.chars().nth(s_idx).unwrap();
                 if pattern.match_with(c) {
@@ -25,6 +26,15 @@ impl Solution {
             }
         }
         if s_idx >= s.len() && p_idx >= p.len() {
+            return true;
+        } else if p_idx < p.len() {
+            while p_idx < p.len() {
+                let pattern = Pattern::new(&p[p_idx..std::cmp::min(p_idx + 2, p.len())]);
+                p_idx += pattern.forward();
+                if !pattern.is_any() {
+                    return false;
+                }
+            }
             return true;
         }
         false
@@ -107,6 +117,14 @@ mod regular_expression_matching_tests {
     fn example_4() {
         assert_eq!(
             Solution::is_match(String::from("aab"), String::from("c*a*b")),
+            true
+        );
+    }
+
+    #[test]
+    fn example_5() {
+        assert_eq!(
+            Solution::is_match(String::from("aaa"), String::from("a*a")),
             true
         );
     }
