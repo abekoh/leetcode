@@ -6,7 +6,9 @@ impl Solution {
     pub fn is_match(s: String, p: String) -> bool {
         let mut match_postfix_num = 0;
         for i in 0..std::cmp::min(s.len(), p.len()) {
-            if s.chars().nth(s.len() - i - 1).unwrap() != p.chars().nth(p.len() - i - 1).unwrap() {
+            let s_c = s.chars().nth(s.len() - i - 1).unwrap();
+            let p_c = p.chars().nth(p.len() - i - 1).unwrap();
+            if p_c != '.' && s_c != p_c {
                 break;
             }
             match_postfix_num += 1;
@@ -41,7 +43,7 @@ impl Solution {
             while p_idx < p_len {
                 let pattern = Pattern::new(&p[p_idx..std::cmp::min(p_idx + 2, p_len)]);
                 p_idx += pattern.forward();
-                println!("{:?}", pattern);
+                // println!("{:?}", pattern);
                 if !pattern.is_any() {
                     return false;
                 }
@@ -144,6 +146,14 @@ mod regular_expression_matching_tests {
     fn example_6() {
         assert_eq!(
             Solution::is_match(String::from("aaa"), String::from("ab*a*c*a")),
+            true
+        );
+    }
+
+    #[test]
+    fn example_7() {
+        assert_eq!(
+            Solution::is_match(String::from("ab"), String::from(".*..")),
             true
         );
     }
