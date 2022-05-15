@@ -7,7 +7,7 @@ impl Solution {
         let mut s_idx = 0;
         let mut p_idx = 0;
         while s_idx < s.len() && p_idx < p.len() {
-            let pattern = Pattern::new(&s[p_idx..std::cmp::min(p_idx + 2, p.len())]);
+            let pattern = Pattern::new(&p[p_idx..std::cmp::min(p_idx + 2, p.len())]);
             p_idx += pattern.forward();
             while s_idx < s.len() {
                 let c = s.chars().nth(s_idx).unwrap();
@@ -24,13 +24,14 @@ impl Solution {
                 }
             }
         }
-        if s_idx < s.len() || p_idx < p.len() {
-            return false;
+        if s_idx >= s.len() && p_idx >= p.len() {
+            return true;
         }
-        true
+        false
     }
 }
 
+#[derive(Debug)]
 struct Pattern {
     pub c: char,
     is_any: bool,
@@ -98,6 +99,14 @@ mod regular_expression_matching_tests {
     fn example_3() {
         assert_eq!(
             Solution::is_match(String::from("ab"), String::from(".*")),
+            true
+        );
+    }
+
+    #[test]
+    fn example_4() {
+        assert_eq!(
+            Solution::is_match(String::from("aab"), String::from("c*a*b")),
             true
         );
     }
