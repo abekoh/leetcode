@@ -4,10 +4,17 @@ struct Solution {}
 
 impl Solution {
     pub fn is_match(s: String, p: String) -> bool {
+        let mut match_postfix_num = 0;
+        for i in (0..std::cmp::min(s.len(), p.len())).rev() {
+            if s.chars().nth(i).unwrap() != p.chars().nth(i).unwrap() {
+                break;
+            }
+            match_postfix_num += 1;
+        }
         let mut s_idx = 0;
         let mut p_idx = 0;
-        let s_len = s.len();
-        let p_len = p.len();
+        let s_len = s.len() - match_postfix_num;
+        let p_len = p.len() - match_postfix_num;
         while s_idx < s_len && p_idx < p_len {
             let pattern = Pattern::new(&p[p_idx..std::cmp::min(p_idx + 2, p_len)]);
             p_idx += pattern.forward();
