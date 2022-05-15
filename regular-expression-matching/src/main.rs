@@ -6,11 +6,13 @@ impl Solution {
     pub fn is_match(s: String, p: String) -> bool {
         let mut s_idx = 0;
         let mut p_idx = 0;
-        while s_idx < s.len() && p_idx < p.len() {
-            let pattern = Pattern::new(&p[p_idx..std::cmp::min(p_idx + 2, p.len())]);
+        let s_len = s.len();
+        let p_len = p.len();
+        while s_idx < s_len && p_idx < p_len {
+            let pattern = Pattern::new(&p[p_idx..std::cmp::min(p_idx + 2, p_len)]);
             p_idx += pattern.forward();
             // println!("{:?}", pattern);
-            while s_idx < s.len() {
+            while s_idx < s_len {
                 let c = s.chars().nth(s_idx).unwrap();
                 if pattern.match_with(c) {
                     s_idx += 1;
@@ -25,11 +27,11 @@ impl Solution {
                 }
             }
         }
-        if s_idx >= s.len() && p_idx >= p.len() {
+        if s_idx >= s_len && p_idx >= p_len {
             return true;
-        } else if p_idx < p.len() {
-            while p_idx < p.len() {
-                let pattern = Pattern::new(&p[p_idx..std::cmp::min(p_idx + 2, p.len())]);
+        } else if p_idx < p_len {
+            while p_idx < p_len {
+                let pattern = Pattern::new(&p[p_idx..std::cmp::min(p_idx + 2, p_len)]);
                 p_idx += pattern.forward();
                 if !pattern.is_any() {
                     return false;
