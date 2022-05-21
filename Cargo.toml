@@ -29,4 +29,5 @@ members = [
   "permutation-in-string",
   "flood-fill",
   "max-area-of-island",
+  "roman-to-integer",
 ]
