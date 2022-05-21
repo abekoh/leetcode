@@ -119,5 +119,9 @@ name = "two-sum-ii-input-array-is-sorted"
 version = "0.1.0"
 
 [[package]]
+name = "valid-parentheses"
+version = "0.1.0"
+
+[[package]]
 name = "water-bottles"
 version = "0.1.0"
