@@ -31,4 +31,5 @@ members = [
   "max-area-of-island",
   "regular-expression-matching",
   "roman-to-integer",
+  "valid-parentheses",
 ]
