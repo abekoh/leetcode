@@ -8,7 +8,13 @@ impl Solution {
         for (i, c) in strs[0].chars().enumerate() {
             if strs
                 .iter()
-                .filter(|s| s.len() > i && s.chars().nth(i).unwrap() == c)
+                .filter(|s| {
+                    if let Some(first_c) = s.chars().nth(i) {
+                        return first_c == c;
+                    } else {
+                        return false;
+                    }
+                })
                 .count()
                 != strs.len()
             {
