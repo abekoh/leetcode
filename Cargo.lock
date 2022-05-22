@@ -35,6 +35,10 @@ name = "intersection-of-two-arrays-ii"
 version = "0.1.0"
 
 [[package]]
+name = "longest-common-prefix"
+version = "0.1.0"
+
+[[package]]
 name = "longest-substring-without-repeating-characters"
 version = "0.1.0"
 

@@ -30,4 +30,5 @@ members = [
   "flood-fill",
   "max-area-of-island",
   "roman-to-integer",
+  "longest-common-prefix",
 ]
