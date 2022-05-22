@@ -29,6 +29,8 @@ members = [
   "permutation-in-string",
   "flood-fill",
   "max-area-of-island",
+  "regular-expression-matching",
   "roman-to-integer",
   "longest-common-prefix",
+  "valid-parentheses",
 ]
