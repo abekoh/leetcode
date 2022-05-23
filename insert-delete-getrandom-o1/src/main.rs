@@ -1,10 +1,12 @@
 #![allow(dead_code)]
 
+use std::collections::HashMap;
+
 use rand::prelude::*;
-use std::collections::HashSet;
 
 struct RandomizedSet {
-    set: HashSet<i32>,
+    map: HashMap<i32, usize>,
+    list: Vec<i32>,
     rng: ThreadRng,
 }
 
@@ -15,21 +17,36 @@ struct RandomizedSet {
 impl RandomizedSet {
     fn new() -> Self {
         Self {
-            set: HashSet::<i32>::new(),
+            map: HashMap::new(),
+            list: Vec::new(),
             rng: rand::thread_rng(),
         }
     }
 
     fn insert(&mut self, val: i32) -> bool {
-        self.set.insert(val)
+        if self.map.contains_key(&val) {
+            return false;
+        }
+        self.map.insert(val, self.list.len());
+        self.list.push(val);
+        true
     }
 
     fn remove(&mut self, val: i32) -> bool {
-        self.set.remove(&val)
+        if let Some(idx) = self.map.get(&val) {
+            let idx = *idx;
+            let last_element = self.list[self.list.len() - 1];
+            self.list[idx] = last_element.clone();
+            self.map.insert(last_element, idx);
+            self.list.pop();
+            self.map.remove(&val);
+            return true;
+        }
+        false
     }
 
     fn get_random(&mut self) -> i32 {
-        *self.set.iter().choose(&mut self.rng).unwrap()
+        *self.list.iter().choose(&mut self.rng).unwrap()
     }
 }
 
