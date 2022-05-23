@@ -1,6 +1,10 @@
 #![allow(dead_code)]
 
-struct RandomizedSet {}
+use std::{collections::HashSet, time::UNIX_EPOCH};
+
+struct RandomizedSet {
+    set: HashSet<i32>,
+}
 
 /**
  * `&self` means the method takes an immutable reference.
@@ -8,19 +12,24 @@ struct RandomizedSet {}
  */
 impl RandomizedSet {
     fn new() -> Self {
-        unimplemented!();
+        Self {
+            set: HashSet::<i32>::new(),
+        }
     }
 
-    fn insert(&self, val: i32) -> bool {
-        unimplemented!();
+    fn insert(&mut self, val: i32) -> bool {
+        self.set.insert(val)
     }
 
-    fn remove(&self, val: i32) -> bool {
-        unimplemented!();
+    fn remove(&mut self, val: i32) -> bool {
+        self.set.remove(&val)
     }
 
     fn get_random(&self) -> i32 {
-        unimplemented!();
+        let now = std::time::SystemTime::now();
+        let unixtime = now.duration_since(UNIX_EPOCH).unwrap();
+        let idx = unixtime.as_nanos() as usize % self.set.len();
+        *self.set.iter().nth(idx).unwrap()
     }
 }
 
@@ -30,7 +39,7 @@ mod tests {
 
     #[test]
     fn example_1() {
-        let randomized_set = RandomizedSet {};
+        let mut randomized_set = RandomizedSet::new();
         randomized_set.insert(1); // Inserts 1 to the set. Returns true as 1 was inserted successfully.
         randomized_set.remove(2); // Returns false as 2 does not exist in the set.
         randomized_set.get_random(); // Inserts 2 to the set, returns true. Set now contains [1,2].
