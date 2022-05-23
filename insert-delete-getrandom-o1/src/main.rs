@@ -1,9 +1,11 @@
 #![allow(dead_code)]
 
-use std::{collections::HashSet, time::UNIX_EPOCH};
+use rand::prelude::*;
+use std::collections::HashSet;
 
 struct RandomizedSet {
     set: HashSet<i32>,
+    rng: ThreadRng,
 }
 
 /**
@@ -14,6 +16,7 @@ impl RandomizedSet {
     fn new() -> Self {
         Self {
             set: HashSet::<i32>::new(),
+            rng: rand::thread_rng(),
         }
     }
 
@@ -25,11 +28,8 @@ impl RandomizedSet {
         self.set.remove(&val)
     }
 
-    fn get_random(&self) -> i32 {
-        let now = std::time::SystemTime::now();
-        let unixtime = now.duration_since(UNIX_EPOCH).unwrap();
-        let idx = unixtime.as_nanos() as usize % self.set.len();
-        *self.set.iter().nth(idx).unwrap()
+    fn get_random(&mut self) -> i32 {
+        *self.set.iter().choose(&mut self.rng).unwrap()
     }
 }
 
