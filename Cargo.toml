@@ -34,4 +34,5 @@ members = [
   "longest-common-prefix",
   "valid-parentheses",
   "insert-delete-getrandom-o1",
+  "valid-palindrome-ii",
 ]
