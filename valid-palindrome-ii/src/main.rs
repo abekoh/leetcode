@@ -4,25 +4,32 @@ struct Solution {}
 
 impl Solution {
     pub fn valid_palindrome(s: String) -> bool {
-        Solution::valid_palindrome_with_skip(&s, true)
+        Solution::valid_palindrome_with_skip(&s.as_bytes(), true)
     }
 
-    fn valid_palindrome_with_skip(s: &str, can_skip: bool) -> bool {
-        if s.len() < 2 {
+    fn valid_palindrome_with_skip(chars: &[u8], can_skip: bool) -> bool {
+        if chars.len() < 2 {
             return true;
         }
-        if s.chars().nth(0).unwrap() == s.chars().nth(s.len() - 1).unwrap() {
-            return Solution::valid_palindrome_with_skip(&s[1..s.len() - 1], can_skip);
+        let mut i = 0;
+        let mut j = chars.len() - 1;
+        while i <= j {
+            if chars[i] == chars[j] {
+                i += 1;
+                j -= 1;
+                continue;
+            }
+            if !can_skip {
+                return false;
+            }
+            return vec![
+                Solution::valid_palindrome_with_skip(&chars[i..=j - 1], false),
+                Solution::valid_palindrome_with_skip(&chars[i + 1..=j], false),
+            ]
+            .iter()
+            .any(|&x| x);
         }
-        if !can_skip {
-            return false;
-        }
-        vec![
-            Solution::valid_palindrome_with_skip(&s[0..s.len() - 1], false),
-            Solution::valid_palindrome_with_skip(&s[1..s.len()], false),
-        ]
-        .iter()
-        .any(|&x| x)
+        true
     }
 }
 
