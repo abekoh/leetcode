@@ -25,7 +25,31 @@ struct Solution {}
 
 impl Solution {
     pub fn level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
-        unreachable!();
+        if root.is_none() {
+            return vec![];
+        }
+        let mut res = vec![];
+        let mut queue = vec![];
+        queue.push(root.unwrap());
+        while queue.len() > 0 {
+            let elements = queue.iter().map(|x| x.borrow().val).collect::<Vec<i32>>();
+            res.push(elements);
+            queue = queue
+                .iter()
+                .map(|x| {
+                    let mut r = vec![];
+                    if let Some(left) = x.borrow().left.clone() {
+                        r.push(left);
+                    }
+                    if let Some(right) = x.borrow().left.clone() {
+                        r.push(right);
+                    }
+                    return r;
+                })
+                .flatten()
+                .collect();
+        }
+        return res;
     }
 }
 
