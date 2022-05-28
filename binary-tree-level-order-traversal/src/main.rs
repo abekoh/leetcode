@@ -41,7 +41,7 @@ impl Solution {
                     if let Some(left) = x.borrow().left.clone() {
                         r.push(left);
                     }
-                    if let Some(right) = x.borrow().left.clone() {
+                    if let Some(right) = x.borrow().right.clone() {
                         r.push(right);
                     }
                     return r;
