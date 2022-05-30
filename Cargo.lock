@@ -97,6 +97,10 @@ name = "minimum-number-of-moves-to-seat-everyone"
 version = "0.1.0"
 
 [[package]]
+name = "minimum-path-sum"
+version = "0.1.0"
+
+[[package]]
 name = "move-zeros"
 version = "0.1.0"
 
