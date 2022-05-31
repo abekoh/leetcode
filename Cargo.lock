@@ -33,6 +33,10 @@ name = "contains-duplicate"
 version = "0.1.0"
 
 [[package]]
+name = "count-good-triplets"
+version = "0.1.0"
+
+[[package]]
 name = "first-bad-version"
 version = "0.1.0"
 
