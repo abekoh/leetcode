@@ -37,4 +37,5 @@ members = [
   "binary-tree-level-order-traversal",
   "valid-palindrome-ii",
   "minimum-path-sum",
+  "count-good-triplets",
 ]
