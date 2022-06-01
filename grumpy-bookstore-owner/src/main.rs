@@ -4,6 +4,24 @@ struct Solution {}
 
 impl Solution {
     pub fn max_satisfied(customers: Vec<i32>, grumpy: Vec<i32>, minutes: i32) -> i32 {
+        let mut satisfied = 0;
+        let mut max_add_satisfied = 0;
+        let mut add_satisfied = 0;
+        for i in 0..customers.len() {
+            if grumpy[i] == 0 {
+                satisfied += customers[i];
+            } else {
+                add_satisfied += customers[i];
+            }
+            if i >= minutes as usize && grumpy[i - minutes as usize] == 1 {
+                add_satisfied -= customers[i - minutes as usize];
+            }
+            max_add_satisfied = std::cmp::max(max_add_satisfied, add_satisfied);
+        }
+        satisfied + max_add_satisfied
+    }
+
+    pub fn max_satisfied_old(customers: Vec<i32>, grumpy: Vec<i32>, minutes: i32) -> i32 {
         let mut st = 0;
         let mut mx = 0;
         for i in 0..(customers.len() + 1 - minutes as usize) {
