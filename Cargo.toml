@@ -38,4 +38,5 @@ members = [
   "valid-palindrome-ii",
   "minimum-path-sum",
   "count-good-triplets",
+  "grumpy-bookstore-owner",
 ]

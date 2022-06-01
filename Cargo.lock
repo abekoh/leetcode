@@ -56,6 +56,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "grumpy-bookstore-owner"
+version = "0.1.0"
+
+[[package]]
 name = "insert-delete-getrandom-o1"
 version = "0.1.0"
 dependencies = [
