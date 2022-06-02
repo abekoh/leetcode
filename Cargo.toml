@@ -39,4 +39,5 @@ members = [
   "minimum-path-sum",
   "count-good-triplets",
   "grumpy-bookstore-owner",
+  "_3sum-smaller",
 ]
