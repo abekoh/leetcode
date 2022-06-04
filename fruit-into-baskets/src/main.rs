@@ -1,13 +1,13 @@
 #![allow(dead_code)]
 
-use std::collections::HashMap;
+use std::{cmp::max, collections::HashMap};
 
 struct Solution {}
 
 impl Solution {
     pub fn total_fruit(fruits: Vec<i32>) -> i32 {
         let mut map = HashMap::<i32, i32>::new();
-        for f in fruits {
+        for f in fruits.clone() {
             match map.get_mut(&f) {
                 Some(el) => *el += 1,
                 None => {
@@ -16,20 +16,21 @@ impl Solution {
                 }
             }
         }
-        let mut first = 0;
-        let mut second = 0;
-        for v in map.values() {
-            if *v > first {
-                second = first;
-                first = *v;
-                continue;
-            }
-            if *v > second {
-                second = *v;
-                continue;
-            }
+        println!("{:?}", map);
+        println!("{:?}", fruits);
+        let mut res = 0;
+        for i in 0..(fruits.len() - 1) {
+            let first = fruits[i];
+            let second = fruits[i + 1];
+            let count: i32 = if first == second {
+                *map.get(&first).unwrap()
+            } else {
+                map.get(&first).unwrap() + map.get(&second).unwrap()
+            };
+            res = max(res, count);
+            println!("{}", res);
         }
-        first + second
+        res
     }
 }
 
