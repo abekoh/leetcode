@@ -34,6 +34,11 @@ members = [
   "longest-common-prefix",
   "valid-parentheses",
   "insert-delete-getrandom-o1",
+  "binary-tree-level-order-traversal",
   "valid-palindrome-ii",
+  "minimum-path-sum",
+  "count-good-triplets",
+  "grumpy-bookstore-owner",
+  "_3sum-smaller",
   "fruit-into-baskets",
 ]
