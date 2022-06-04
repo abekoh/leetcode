@@ -35,4 +35,5 @@ members = [
   "valid-parentheses",
   "insert-delete-getrandom-o1",
   "valid-palindrome-ii",
+  "fruit-into-baskets",
 ]
