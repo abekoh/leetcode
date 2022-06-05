@@ -26,10 +26,7 @@ impl Solution {
             let current = Self::parse_int(&s[(s.len() - i - 1)..s.len()]);
             if current - prev == 1 {
                 let sl = &s[..(s.len()) - i - 1];
-                if sl.len() == 0 {
-                    return true;
-                }
-                if Self::helper(sl, current) {
+                if sl.len() == 0 || Self::helper(sl, current) {
                     return true;
                 }
             }
