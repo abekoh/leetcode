@@ -4,6 +4,9 @@ struct Solution {}
 
 impl Solution {
     pub fn split_string(s: String) -> bool {
+        if Self::to_int(&s) == 0 {
+            return false;
+        }
         for i in 1..s.len() {
             let prev = Self::to_int(&s[(s.len() - i)..s.len()]);
             if Self::split_string_temp(&s[..(s.len() - i)], prev) {
@@ -14,6 +17,9 @@ impl Solution {
     }
 
     fn split_string_temp(s: &str, prev: i32) -> bool {
+        if Self::to_int(s) == 0 {
+            return true;
+        }
         for i in 1..s.len() {
             let target = Self::to_int(&s[(s.len() - i)..s.len()]);
             if target - prev == 1 {
@@ -59,6 +65,20 @@ mod tests {
     fn example_4() {
         assert_eq!(
             Solution::split_string(String::from("0090089")), true
+        );
+    }
+
+    #[test]
+    fn example_5() {
+        assert_eq!(
+            Solution::split_string(String::from("00000")), false
+        );
+    }
+
+    #[test]
+    fn example_6() {
+        assert_eq!(
+            Solution::split_string(String::from("10009998")), true
         );
     }
 }
