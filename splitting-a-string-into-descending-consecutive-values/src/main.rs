@@ -32,6 +32,13 @@ mod tests {
             Solution::split_string(String::from("9080701")), false
         );
     }
+
+    #[test]
+    fn example_4() {
+        assert_eq!(
+            Solution::split_string(String::from("0090089")), true
+        );
+    }
 }
 
 fn main() {
