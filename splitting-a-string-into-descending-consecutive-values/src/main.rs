@@ -16,7 +16,7 @@ impl Solution {
     fn split_string_temp(s: &str, prev: i32) -> bool {
         for i in 1..s.len() {
             let target = Self::to_int(&s[(s.len() - i)..s.len()]);
-            if target - prev == 0 {
+            if target - prev == 1 {
                 if Self::split_string_temp(&s[..(s.len()) - i], target) {
                     return true;
                 }
