@@ -1,33 +1,35 @@
 #![allow(dead_code)]
 
+use std::num::ParseIntError;
+
 struct Solution {}
 
 impl Solution {
     pub fn split_string(s: String) -> bool {
-        if Self::to_int(&s) == 0 {
+        if s.len() == 0 || Self::parse_int(&s) == 0 {
             return false;
         }
         for i in 0..s.len() {
-            let prev = Self::to_int(&s[(s.len() - i - 1)..s.len()]);
-            if Self::split_string_temp(&s[..(s.len() - i - 1)], prev) {
+            let prev = Self::parse_int(&s[(s.len() - i - 1)..s.len()]);
+            if Self::helper(&s[..(s.len() - i - 1)], prev) {
                 return true;
             }
         }
         false
     }
 
-    fn split_string_temp(s: &str, prev: i128) -> bool {
-        if Self::to_int(s) == 0 {
+    fn helper(s: &str, prev: i128) -> bool {
+        if s.len() == 0 {
             return false;
         }
         for i in 0..s.len() {
-            let target = Self::to_int(&s[(s.len() - i - 1)..s.len()]);
-            if target - prev == 1 {
+            let current = Self::parse_int(&s[(s.len() - i - 1)..s.len()]);
+            if current - prev == 1 {
                 let sl = &s[..(s.len()) - i - 1];
                 if sl.len() == 0 {
                     return true;
                 }
-                if Self::split_string_temp(sl, target) {
+                if Self::helper(sl, current) {
                     return true;
                 }
             }
@@ -35,8 +37,8 @@ impl Solution {
         false
     }
 
-    fn to_int(s: &str) -> i128 {
-        s.parse::<i128>().unwrap_or(0)
+    fn parse_int(s: &str) -> i128 {
+        s.parse::<i128>().unwrap()
     }
 }
 
@@ -97,6 +99,13 @@ mod tests {
     fn example_8() {
         assert_eq!(
             Solution::split_string(String::from("22759227582275722756")), true
+        );
+    }
+
+    #[test]
+    fn example_9() {
+        assert_eq!(
+            Solution::split_string(String::from("")), false
         );
     }
 }
