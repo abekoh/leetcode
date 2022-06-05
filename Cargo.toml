@@ -41,4 +41,5 @@ members = [
   "grumpy-bookstore-owner",
   "_3sum-smaller",
   "fruit-into-baskets",
+  "splitting-a-string-into-descending-consecutive-values",
 ]
