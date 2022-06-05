@@ -7,23 +7,27 @@ impl Solution {
         if Self::to_int(&s) == 0 {
             return false;
         }
-        for i in 1..s.len() {
-            let prev = Self::to_int(&s[(s.len() - i)..s.len()]);
-            if Self::split_string_temp(&s[..(s.len() - i)], prev) {
+        for i in 0..s.len() {
+            let prev = Self::to_int(&s[(s.len() - i - 1)..s.len()]);
+            if Self::split_string_temp(&s[..(s.len() - i - 1)], prev) {
                 return true;
             }
         }
         false
     }
 
-    fn split_string_temp(s: &str, prev: i32) -> bool {
+    fn split_string_temp(s: &str, prev: i128) -> bool {
         if Self::to_int(s) == 0 {
-            return true;
+            return false;
         }
-        for i in 1..s.len() {
-            let target = Self::to_int(&s[(s.len() - i)..s.len()]);
+        for i in 0..s.len() {
+            let target = Self::to_int(&s[(s.len() - i - 1)..s.len()]);
             if target - prev == 1 {
-                if Self::split_string_temp(&s[..(s.len()) - i], target) {
+                let sl = &s[..(s.len()) - i - 1];
+                if sl.len() == 0 {
+                    return true;
+                }
+                if Self::split_string_temp(sl, target) {
                     return true;
                 }
             }
@@ -31,8 +35,8 @@ impl Solution {
         false
     }
 
-    fn to_int(s: &str) -> i32 {
-        s.parse::<i32>().unwrap()
+    fn to_int(s: &str) -> i128 {
+        s.parse::<i128>().unwrap_or(0)
     }
 }
 
@@ -79,6 +83,20 @@ mod tests {
     fn example_6() {
         assert_eq!(
             Solution::split_string(String::from("10009998")), true
+        );
+    }
+
+    #[test]
+    fn example_7() {
+        assert_eq!(
+            Solution::split_string(String::from("4771447713")), true
+        );
+    }
+
+    #[test]
+    fn example_8() {
+        assert_eq!(
+            Solution::split_string(String::from("22759227582275722756")), true
         );
     }
 }
