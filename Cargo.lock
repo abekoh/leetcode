@@ -201,6 +201,10 @@ name = "slowest-key"
 version = "0.1.0"
 
 [[package]]
+name = "split-a-string-in-balanced-strings"
+version = "0.1.0"
+
+[[package]]
 name = "splitting-a-string-into-descending-consecutive-values"
 version = "0.1.0"
 
