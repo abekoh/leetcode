@@ -44,4 +44,5 @@ members = [
   "splitting-a-string-into-descending-consecutive-values",
   "third-maximum-number",
   "split-a-string-in-balanced-strings",
+  "uncommon-words-from-two-sentences",
 ]

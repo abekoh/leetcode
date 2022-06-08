@@ -225,6 +225,10 @@ name = "two-sum-ii-input-array-is-sorted"
 version = "0.1.0"
 
 [[package]]
+name = "uncommon-words-from-two-sentences"
+version = "0.1.0"
+
+[[package]]
 name = "valid-palindrome-ii"
 version = "0.1.0"
 
