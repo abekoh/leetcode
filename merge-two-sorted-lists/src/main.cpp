@@ -14,8 +14,28 @@ struct ListNode {
 class Solution {
 public:
     ListNode *mergeTwoLists(ListNode *list1, ListNode *list2) {
-        auto node = new ListNode();
-        return node;
+        auto res = new ListNode();
+        auto cur = res;
+        while (true) {
+            if (list1 == nullptr) {
+                cur->next = list2;
+                break;
+            }
+            if (list2 == nullptr) {
+                cur->next = list1;
+                break;
+            }
+            if (list1->val < list2->val) {
+                cur->next = new ListNode(list1->val);
+                cur = cur->next;
+                list1 = list1->next;
+            } else {
+                cur->next = new ListNode(list2->val);
+                cur = cur->next;
+                list2 = list2->next;
+            }
+        }
+        return res->next;
     }
 };
 
