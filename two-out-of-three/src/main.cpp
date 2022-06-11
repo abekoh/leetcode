@@ -1,11 +1,31 @@
 #include "gtest/gtest.h"
+#include <unordered_map>
+#include <unordered_set>
 
 using namespace std;
 
 class Solution {
 public:
     static vector<int> twoOutOfThree(vector<int> &nums1, vector<int> &nums2, vector<int> &nums3) {
-        vector<int> res = {3, 2};
+        unordered_map<int, int> mp = {};
+        unordered_set<int> s1(nums1.begin(), nums1.end());
+        for (int i: s1) {
+            mp[i] += 1;
+        }
+        unordered_set<int> s2(nums2.begin(), nums2.end());
+        for (int i: s2) {
+            mp[i] += 1;
+        }
+        unordered_set<int> s3(nums3.begin(), nums3.end());
+        for (int i: s3) {
+            mp[i] += 1;
+        }
+        vector<int> res = {};
+        for (pair<int, int> el: mp) {
+            if (el.second >= 2) {
+                res.push_back(el.first);
+            }
+        }
         return res;
     }
 };
