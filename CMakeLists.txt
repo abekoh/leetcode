@@ -12,3 +12,4 @@ if(RUN_TESTS)
 endif()
 
 add_subdirectory(merge-two-sorted-lists)
+add_subdirectory(number-of-equal-count-substrings)
