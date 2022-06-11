@@ -15,6 +15,10 @@ case $LANG in
     echo "add_subdirectory($NAME)" >> ./CMakeLists.txt
     ;;
 
+  rust)
+    cargo init $NAME
+    ;;
+
   *)
     echo "unsupported language: $LANG"
     exit 1
