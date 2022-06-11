@@ -4,26 +4,24 @@
 
 using namespace std;
 
+// https://leetcode.com/problems/two-out-of-three/discuss/1515973/C%2B%2B-Super-Simple-and-Easy-Solution-Explained
 class Solution {
 public:
     static vector<int> twoOutOfThree(vector<int> &nums1, vector<int> &nums2, vector<int> &nums3) {
-        unordered_map<int, int> mp = {};
-        unordered_set<int> s1(nums1.begin(), nums1.end());
-        for (int i: s1) {
-            mp[i] += 1;
+        unordered_map<int, char> mp;
+        for (int el: nums1) {
+            mp[el] |= 1;
         }
-        unordered_set<int> s2(nums2.begin(), nums2.end());
-        for (int i: s2) {
-            mp[i] += 1;
+        for (int el: nums2) {
+            mp[el] |= 2;
         }
-        unordered_set<int> s3(nums3.begin(), nums3.end());
-        for (int i: s3) {
-            mp[i] += 1;
+        for (int el: nums3) {
+            mp[el] |= 4;
         }
         vector<int> res = {};
-        for (pair<int, int> el: mp) {
-            if (el.second >= 2) {
-                res.push_back(el.first);
+        for (auto [num, cnt]: mp) {
+            if ((!!(cnt & 1) + !!(cnt & 2) + !!(cnt & 4)) >= 2) {
+                res.push_back(num);
             }
         }
         return res;
