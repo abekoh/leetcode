@@ -1,13 +1,25 @@
 #!/bin/bash -e
 
-if [ -z "$1" ]; then
-  echo "please set problem name"
+echo $#
+if [ $# != 2 ]; then
+  echo "please set language and problem_name"
   exit 1
 fi
 
-NAME=$1
+LANG=$1
+NAME=$2
 
-cp -R ./__TEMPLATES/cpp/REPLACE_ME ./
-mv REPLACE_ME $NAME
-find $NAME -type f | xargs sed -i -e "s/REPLACE_ME/$NAME/g"
-echo "add_subdirectory($NAME)" >> ./CMakeLists.txt
+case $LANG in
+  cpp)
+    cp -R ./__TEMPLATES/cpp/REPLACE_ME ./
+    mv REPLACE_ME $NAME
+    find $NAME -type f | xargs sed -i -e "s/REPLACE_ME/$NAME/g"
+    echo "add_subdirectory($NAME)" >> ./CMakeLists.txt
+    ;;
+
+  *)
+    echo "unsupported language: $LANG"
+    exit 1
+    ;;
+esac
+
