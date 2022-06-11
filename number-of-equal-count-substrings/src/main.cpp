@@ -6,7 +6,7 @@ using namespace std;
 // https://leetcode.com/problems/number-of-equal-count-substrings/discuss/1570772/Sliding-Window-O(26n)
 class Solution {
 public:
-    int equalCountSubstrings(string s, int count) {
+    static int equalCountSubstrings(string s, int count) {
         int res = 0;
         int max_unique = unordered_set(begin(s), end(s)).size();
         for (int unique = 1; unique <= max_unique; ++unique) {
@@ -28,18 +28,15 @@ public:
 };
 
 TEST(Tests, Example01) {
-    auto sol = new Solution;
-    EXPECT_EQ(sol->equalCountSubstrings("aaabcbbcc", 3), 3);
+    EXPECT_EQ(Solution::equalCountSubstrings("aaabcbbcc", 3), 3);
 }
 
 TEST(Tests, Example02) {
-    auto sol = new Solution;
-    EXPECT_EQ(sol->equalCountSubstrings("abcd", 2), 0);
+    EXPECT_EQ(Solution::equalCountSubstrings("abcd", 2), 0);
 }
 
 TEST(Tests, Example03) {
-    auto sol = new Solution;
-    EXPECT_EQ(sol->equalCountSubstrings("a", 5), 0);
+    EXPECT_EQ(Solution::equalCountSubstrings("a", 5), 0);
 }
 
 int main(int argc, char **argv) {
