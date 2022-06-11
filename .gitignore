@@ -2,3 +2,15 @@
 **/target
 cmake-*
 build
+
+CMakeCache.txt
+CMakeFiles/
+Makefile
+bin/
+cmake_install.cmake
+conan.lock
+conanbuildinfo.cmake
+conanbuildinfo.txt
+conaninfo.txt
+graph_info.json
+FindGTest.cmake
