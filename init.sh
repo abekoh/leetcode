@@ -1,6 +1,4 @@
 #!/bin/bash -e
-
-echo $#
 if [ $# != 2 ]; then
   echo "please set language and problem_name"
   exit 1
