@@ -10,12 +10,22 @@ public:
         for (int n: nums) {
             mp[n]++;
         }
+        unordered_map<int, bool> searched;
         int res = 0;
-        for (int i = 1; i <= k / 2; ++i) {
-            if (k % 2 == 0 && i == k / 2) {
-                res += mp[i] / 2;
+        for (int i = 0; i < nums.size(); i++) {
+            int cur = nums[i];
+            if (cur > k / 2) {
+                continue;
+            }
+            if (searched[cur]) {
+                continue;
+            }
+            searched[cur] = true;
+            int comp = k - nums[i];
+            if (k % 2 == 0 && (cur == comp)) {
+                res += mp[cur] / 2;
             } else {
-                res += min(mp[i], mp[k - i]);
+                res += min(mp[cur], mp[comp]);
             }
         }
         return res;
