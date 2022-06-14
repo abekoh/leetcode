@@ -1,4 +1,5 @@
 #include "gtest/gtest.h"
+#include <cmath>
 
 using namespace std;
 
@@ -17,7 +18,39 @@ struct TreeNode {
 class Solution {
 public:
     static int widthOfBinaryTree(TreeNode *root) {
-        return 0;
+        if (root->left == nullptr || root->right == nullptr) {
+            return 1;
+        }
+        auto l = root->left;
+        auto r = root->right;
+        int res = 2;
+        int l_count = -1;
+        int r_count = -1;
+        while (true) {
+            if (l_count >= 0) {
+                res += (int) pow(2, l_count);
+            }
+            if (r_count >= 0) {
+                res += (int) pow(2, r_count);
+            }
+            if (l->left != nullptr) {
+                l_count++;
+                l = l->left;
+            } else if (l->right != nullptr) {
+                l = l->right;
+            } else {
+                break;
+            }
+            if (r->right != nullptr) {
+                r_count++;
+                r = r->right;
+            } else if (r->left != nullptr) {
+                r = r->left;
+            } else {
+                break;
+            }
+        }
+        return res;
     }
 };
 
@@ -37,6 +70,11 @@ TEST(Tests, Example02) {
 TEST(Tests, Example03) {
     auto input = new TreeNode(1, new TreeNode(3, new TreeNode(5), nullptr), new TreeNode(2));
     EXPECT_EQ(Solution::widthOfBinaryTree(input), 2);
+}
+
+TEST(Tests, Example04) {
+    auto input = new TreeNode(1);
+    EXPECT_EQ(Solution::widthOfBinaryTree(input), 1);
 }
 
 int main(int argc, char **argv) {
