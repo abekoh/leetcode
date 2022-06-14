@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include <cmath>
+#include <queue>
 
 using namespace std;
 
@@ -15,9 +16,38 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+// https://leetcode.com/problems/maximum-width-of-binary-tree/discuss/1802311/C%2B%2B-oror-BFS-oror-Easy-To-Understand-oror-Full-Explanation
 class Solution {
 public:
     static int widthOfBinaryTree(TreeNode *root) {
+        if (root == nullptr) return 0;
+        int res = 1;
+        queue<pair<TreeNode *, int>> q;
+        q.push({root, 0});
+        while (!q.empty()) {
+            int cnt = q.size();
+            int start = q.front().second;
+            int end = q.back().second;
+
+            res = max(res, end - start + 1);
+
+            for (int i = 0; i < cnt; ++i) {
+                pair<TreeNode *, int> p = q.front();
+
+                q.pop();
+
+                if (p.first->left != nullptr) {
+                    q.push({p.first->left, (long long) 2 * p.second + 1});
+                }
+                if (p.first->right != nullptr) {
+                    q.push({p.first->right, (long long) 2 * p.second + 2});
+                }
+            }
+        }
+        return res;
+    }
+
+    static int widthOfBinaryTree_wrong(TreeNode *root) {
         if (root->left == nullptr || root->right == nullptr) {
             return 1;
         }
