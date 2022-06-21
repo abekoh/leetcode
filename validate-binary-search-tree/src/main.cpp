@@ -20,17 +20,17 @@ public:
         if (root == nullptr) {
             return true;
         }
-        return dfs(LONG_MIN, root->val, root->left) && dfs(root->val, LONG_MAX, root->right);
+        return helper(LONG_MIN, root->val, root->left) && helper(root->val, LONG_MAX, root->right);
     }
 
-    static bool dfs(long min, long max, TreeNode *tree) {
+    static bool helper(long min, long max, TreeNode *tree) {
         if (tree == nullptr) {
             return true;
         }
         if (tree->val <= min || tree->val >= max) {
             return false;
         }
-        return dfs(min, (long) tree->val, tree->left) && dfs((long) tree->val, max, tree->right);
+        return helper(min, (long) tree->val, tree->left) && helper((long) tree->val, max, tree->right);
     }
 };
 
