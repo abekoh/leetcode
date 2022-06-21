@@ -17,7 +17,20 @@ struct TreeNode {
 class Solution {
 public:
     static bool isValidBST(TreeNode *root) {
+        if (root == nullptr) {
+            return true;
+        }
+        return dfs(LONG_MIN, root->val, root->left) && dfs(root->val, LONG_MAX, root->right);
+    }
 
+    static bool dfs(long min, long max, TreeNode *tree) {
+        if (tree == nullptr) {
+            return true;
+        }
+        if (tree->val <= min || tree->val >= max) {
+            return false;
+        }
+        return dfs(min, (long) tree->val, tree->left) && dfs((long) tree->val, max, tree->right);
     }
 };
 
@@ -29,6 +42,26 @@ TEST(Tests, Example01) {
 TEST(Tests, Example02) {
     auto input = new TreeNode(5, new TreeNode(1), new TreeNode(4, new TreeNode(3), new TreeNode(6)));
     EXPECT_FALSE(Solution::isValidBST(input));
+}
+
+TEST(Tests, Example03) {
+    auto input = new TreeNode(2, new TreeNode(2), new TreeNode(2));
+    EXPECT_FALSE(Solution::isValidBST(input));
+}
+
+TEST(Tests, Example04) {
+    auto input = new TreeNode(5, new TreeNode(4), new TreeNode(6, new TreeNode(3), new TreeNode(7)));
+    EXPECT_FALSE(Solution::isValidBST(input));
+}
+
+TEST(Tests, Example05) {
+    auto input = new TreeNode(3, new TreeNode(1, new TreeNode(0), new TreeNode(2)),
+                              new TreeNode(5, new TreeNode(4), new TreeNode(6)));
+    EXPECT_TRUE(Solution::isValidBST(input));
+}
+
+TEST(Tests, Example06) {
+    EXPECT_TRUE(Solution::isValidBST(new TreeNode(INT_MIN, nullptr, new TreeNode(INT_MAX))));
 }
 
 int main(int argc, char **argv) {
