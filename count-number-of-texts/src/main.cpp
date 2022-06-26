@@ -2,10 +2,36 @@
 
 using namespace std;
 
-// https://leetcode.com/problems/count-number-of-texts/discuss/2021877/C%2B%2B-DP-Solution-O(N)
 class Solution {
 public:
+    // https://leetcode.com/problems/count-number-of-texts/discuss/2017753/Simple-O(N)-single-pass-solution
     static int countTexts(string pressedKeys) {
+        int MOD = 1000000007;
+        vector<int> dp = {};
+        for (int i = 0; i < pressedKeys.length() + 1; i++) {
+            dp.push_back(0);
+        }
+        dp[0] = 1;
+        for (int i = 1; i < pressedKeys.length() + 1; i++) {
+            // i番目のキー(1はじまり)までの組み合わせ数
+            dp[i] = dp[i - 1] % MOD;
+            if (i >= 2 && pressedKeys[i - 1] == pressedKeys[i - 2]) {
+                dp[i] = (dp[i] + dp[i - 2]) % MOD;
+                if (i >= 3 && pressedKeys[i - 1] == pressedKeys[i - 3]) {
+                    dp[i] = (dp[i] + dp[i - 3]) % MOD;
+                    if ((pressedKeys[i - 1] == '7' || pressedKeys[i - 1] == '9') &&
+                        i >= 4 && pressedKeys[i - 1] ==
+                                  pressedKeys[i - 4]) {
+                        dp[i] = (dp[i] + dp[i - 4]) % MOD;
+                    }
+                }
+            }
+        }
+        return dp[pressedKeys.length()];
+    }
+
+    // https://leetcode.com/problems/count-number-of-texts/discuss/2021877/C%2B%2B-DP-Solution-O(N)
+    static int countTexts_sol1(string pressedKeys) {
         int MOD = 1000000007;
         int len = pressedKeys.length();
         vector<vector<int>> preDP = {{0, 1, 2, 4},
